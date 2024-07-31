@@ -5,6 +5,9 @@
   box-sizing: border-box;
   list-style-type: none;
   text-decoration: none;
+  border: none;
+  outline: none;
+  transition: 0.3s;
 }
 :root
 {
@@ -18,6 +21,7 @@
   --pink-clr: #F9818E;
   --purple-clr: #483EFF;
   --error-clr: #EE374A;
+  --light-blue-clr: #ABBCFF;
   --font-size-32: 32px;
   --font-size-16: 16px;
   --font-size-14: 14px;

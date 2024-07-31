@@ -1,5 +1,55 @@
 .nav-li
 {
     width: fit-content;
-    background-color: red;
+    margin-bottom: 32px;
+    gap: 16px;
+    cursor: pointer;
+}
+header
+{
+    width: 280px;
+    height: 560px;
+    background: url(../../assets/images/bg-sidebar-desktop.svg);
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    background-size: 100%;
+    padding-top: 40px;
+    padding-left: 32px;
+}
+header .num
+{
+    border-radius: 50%;
+    color: var(--white-clr);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-700);
+    width: 33px;
+    height: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--sky-blue-clr);
+}
+header .num:hover
+{
+    opacity: 0.7;
+    background-color: var(--sky-blue-clr);
+    color: var(--denim-clr);
+}
+.active .num
+{
+    background-color: var(--sky-blue-clr);
+    color: var(--denim-clr);
+}
+header span
+{
+    color: var(--light-blue-clr);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-400);
+}
+header h6
+{
+    color: var(--white-clr);
+    font-weight: var(--font-weight-700);
+    font-size: var(--font-size-14);
+    letter-spacing: 1px;
 }
