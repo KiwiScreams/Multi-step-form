@@ -4,7 +4,7 @@ function PersonalInfo() {
     return (
         <>
             <section className="personal-info-section">
-                <h1>personal-info</h1>
+                <h1>Personal info</h1>
                 <p>Please provide your name, email address, and phone number.</p>
                 <form>
                     <label htmlFor="username">Name</label>

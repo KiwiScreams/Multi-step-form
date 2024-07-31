@@ -5,7 +5,7 @@ import SelectPlan from "./components/form/select-plan/SelectPlan"
 import AddOns from "./components/form/add-ons/AddOns"
 import Summary from "./components/form/summary/Summary"
 import Success from "./components/form/success/Success"
-
+import "../src/components/form/Forms.css"
 function App() {
 
   return (

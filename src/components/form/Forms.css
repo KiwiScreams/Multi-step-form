@@ -1,0 +1,44 @@
+.personal-info-section
+{
+    width: fit-content;
+}
+.personal-info-section h1
+{
+    color: var(--denim-clr);
+    font-size: var(--font-size-32);
+    font-weight: var(--font-weight-700);
+    margin-bottom: 12px;
+}
+.personal-info-section p
+{
+    color: var(--gray-clr);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+    margin-bottom: 36px;
+}
+.personal-info-section form label
+{
+    display: block;
+    color: var(--denim-clr);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-400);
+    margin-bottom: 8px;
+}
+.personal-info-section form input
+{
+    margin-bottom: 24px;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid var(--border-clr);
+    height: 48px;
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+    padding-left: 16px;
+}
+.personal-info-section form input::placeholder
+{
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+    color: var(--gray-clr);
+}

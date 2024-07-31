@@ -5,7 +5,7 @@ import Button from "../components/form/button/Button"
 function Home() {
     return (
         <>
-            <section className="core-section flex">
+            <section className="core-section">
                 <Navigation />
                 <div className="container">
                     <div className="form">

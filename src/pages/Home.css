@@ -1,16 +1,18 @@
 .core-section
 {
-    width: 70%;
+    width: 60%;
     background-color: var(--white-clr);
     padding: 16px;
     border-radius: 10px;
     box-shadow: 0 25px 40px -20px hsla(0, 0%, 0%, 0.09);
     margin: auto;
     margin-top: 50px;
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
 }
 .core-section .container
 {
     width: 65%;
     padding: 40px 84px 0 0;
-    background-color: blueviolet;
 }
