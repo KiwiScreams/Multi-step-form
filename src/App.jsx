@@ -6,13 +6,20 @@ import AddOns from "./components/form/add-ons/AddOns"
 import Summary from "./components/form/summary/Summary"
 import Success from "./components/form/success/Success"
 import "../src/components/form/Forms.css"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { useState } from "react"
 function App() {
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/personal-info");
+  }, []);
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route path="personal-info" index element={<PersonalInfo />} />
+          <Route index element={<PersonalInfo />} />
+          <Route path="personal-info" element={<PersonalInfo />} />
           <Route path="select-plan" element={<SelectPlan />} />
           <Route path="add-ons" element={<AddOns />} />
           <Route path="summary" element={<Summary />} />

@@ -1,0 +1,15 @@
+.btn
+{
+    border-radius: 10px;
+    background-color: transparent;
+    width: 124px;
+    height: 48px;
+    background-color: var(--denim-clr);
+    color: var(--white-clr);
+    font-weight: var(--font-weight-500);
+    font-size: var(--font-size-16);
+}
+.btn:hover
+{
+    background-color: #164A8A;
+}
