@@ -12,9 +12,10 @@ header
     background: url(../../assets/images/bg-sidebar-desktop.svg);
     background-repeat: no-repeat;
     border-radius: 10px;
-    background-size: 100%;
+    background-size: auto;
     padding-top: 40px;
     padding-left: 32px;
+    overflow: hidden;
 }
 header .num
 {

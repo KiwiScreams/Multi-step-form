@@ -5,7 +5,6 @@ function Navigation() {
         <>
             <header>
                 <nav>
-                    <ul>
                         <NavLink
                             to="personal-info"
                             className={({ isActive }) => `nav-li flex ${isActive ? "active" : ""}`}
@@ -45,7 +44,6 @@ function Navigation() {
                                 <h6>SUMMARY</h6>
                             </div>
                         </NavLink>
-                    </ul>
                 </nav>
             </header>
         </>
