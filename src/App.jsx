@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom"
-import Navigation from "./components/navigation/Navigation"
 import Home from "./pages/Home"
 import PersonalInfo from "./components/form/personal-info/PersonalInfo"
 import SelectPlan from "./components/form/select-plan/SelectPlan"
@@ -11,10 +10,9 @@ function App() {
 
   return (
     <>
-      <Navigation />
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route path="personal-info" element={<PersonalInfo />} />
+          <Route path="personal-info" index element={<PersonalInfo />} />
           <Route path="select-plan" element={<SelectPlan />} />
           <Route path="add-ons" element={<AddOns />} />
           <Route path="summary" element={<Summary />} />
