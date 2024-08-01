@@ -6,12 +6,18 @@ import { useNavigate } from "react-router-dom";
 import plan_1 from "../../../assets/images/plan-1.svg"
 import plan_2 from "../../../assets/images/plan-2.svg"
 import plan_3 from "../../../assets/images/plan-3.svg"
+import { useState } from "react";
 
 function SelectPlan() {
     const { handleSubmit, register, reset, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema)
     });
+    const handleToggle = () => {
+        setIsMonthly(!isMonthly);
+    }
     const navigate = useNavigate();
+    const [activePlan, setActivePlan] = useState(0);
+    const [isMonthly, setIsMonthly] = useState(true);
     const onSubmit = async (data) => {
         console.log(data);
         reset();
@@ -42,7 +48,7 @@ function SelectPlan() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="plan-boxes flex">
                         {plans.map((plan, index) => (
-                            <div key={index} className="plan-box">
+                            <div key={index} className={`plan-box ${activePlan === index ? 'active' : ''}`} onClick={() => setActivePlan(index)}>
                                 <div className="plan-image">
                                     <img src={plan.image} alt="" />
                                 </div>
@@ -53,11 +59,11 @@ function SelectPlan() {
                     </div>
                     <div className="toggle-box">
                         <div className="toggle-content flex">
-                            <h3>Monthly</h3>
-                            <div className="toggle">
+                            <h3 className={isMonthly ? 'active' : ''}>Monthly</h3>
+                            <div className={`toggle ${isMonthly ? '' : 'active'}`} onClick={handleToggle}>
                                 <div className="toggle-ball"></div>
                             </div>
-                            <h3>Yearly</h3>
+                            <h3 className={isMonthly ? '' : 'active'}>Yearly</h3>
                         </div>
                     </div>
                     <div className="buttons flex">

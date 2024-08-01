@@ -73,6 +73,14 @@
     padding: 20px 16px 16px 16px;
     margin-bottom: 32px;
 }
+.plan-box:hover
+{
+    border: 1px solid var(--denim-clr);
+}
+.plan-box.active
+{
+    border: 1px solid var(--denim-clr);
+}
 .plan-box .plan-image
 {
     width: 40px;
@@ -113,7 +121,7 @@
 .toggle-box h3
 {
     font-size: var(--font-size-14);
-    color: var(--denim-clr);
+    color: var(--gray-clr);
     font-weight: var(--font-weight-700);
 }
 .toggle-box .toggle
@@ -122,6 +130,7 @@
     padding: 5px 4px;
     background-color: var(--denim-clr);
     border-radius: 20px;
+    border: 1px solid var(--denim-clr);
 }
 .toggle-box .toggle .toggle-ball
 {
@@ -148,6 +157,14 @@
     font-size: var(--font-size-16);
 }
 .back-btn:hover
+{
+    color: var(--denim-clr);
+}
+.toggle.active .toggle-ball
+{
+    transform: translateX(16px);
+}
+h3.active
 {
     color: var(--denim-clr);
 }
