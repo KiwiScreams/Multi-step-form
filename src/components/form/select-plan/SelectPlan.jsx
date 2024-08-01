@@ -11,8 +11,14 @@ import { useEffect } from "react";
 
 function SelectPlan() {
     const navigate = useNavigate();
-    const [activePlan, setActivePlan] = useState(0);
-    const [isMonthly, setIsMonthly] = useState(true);
+    const [activePlan, setActivePlan] = useState(() => {
+        const storedActivePlan = localStorage.getItem('activePlan');
+        return storedActivePlan ? parseInt(storedActivePlan) : 0;
+    });
+    const [isMonthly, setIsMonthly] = useState(() => {
+        const storedIsMonthly = localStorage.getItem('isMonthly');
+        return storedIsMonthly ? JSON.parse(storedIsMonthly) : true;
+    });
     const [formData, setFormData] = useState({});
     const { handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(validationSchema),
@@ -25,6 +31,14 @@ function SelectPlan() {
             reset(JSON.parse(storedFormData));
         }
     }, []);
+    useEffect(() => {
+        localStorage.setItem('activePlan', activePlan.toString());
+    }, [activePlan]);
+
+    useEffect(() => {
+        localStorage.setItem('isMonthly', JSON.stringify(isMonthly));
+    }, [isMonthly]);
+
     const handleToggle = () => {
         setIsMonthly(!isMonthly);
     }
@@ -33,6 +47,7 @@ function SelectPlan() {
         await localStorage.setItem('formData', JSON.stringify(data));
         navigate("/add-ons");
     };
+
     const onGoBack = async (data) => {
         navigate("/personal-info");
     };
