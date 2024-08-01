@@ -1,6 +1,6 @@
 .personal-info-section
 {
-    width: fit-content;
+    width: 450px;
 }
 .personal-info-section h1
 {
@@ -58,4 +58,41 @@
 .personal-info-section form input.error-input
 {
     border: 1px solid var(--error-clr);
+}
+/* SELECT PLAN */
+.plan-boxes
+{
+    gap: 18px;
+}
+.plan-box
+{
+    background-color: var(--white-clr);
+    border: 1px solid var(--border-clr);
+    border-radius: 10px;
+    width: 160px;
+    padding: 20px 16px 16px 16px;
+}
+.plan-box .plan-image
+{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+.plan-box .plan-image img
+{
+    width: 100%;
+}
+.plan-box h3
+{
+    color: var(--denim-clr);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+    margin-bottom: 8px;
+}
+.plan-box span
+{
+    font-size: var(--font-size-14);
+    color: var(--gray-clr);
+    font-weight: var(--font-weight-400);
 }

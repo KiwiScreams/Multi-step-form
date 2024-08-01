@@ -2,13 +2,16 @@ import { useForm } from "react-hook-form"
 import Button from "../button/Button"
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
+import { useNavigate } from "react-router-dom";
 function PersonalInfo() {
     const { handleSubmit, register, reset, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema)
     });
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
         console.log(data);
         reset();
+        navigate("/select-plan");
     };
     return (
         <>
