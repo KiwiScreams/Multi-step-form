@@ -8,6 +8,24 @@ import plan_2 from "../../../assets/images/plan-2.svg"
 import plan_3 from "../../../assets/images/plan-3.svg"
 import { useState } from "react";
 function AddOns() {
+    const services = 
+    [
+        {
+            image: plan_1,
+            title: "Arcade",
+            price: "$9/mo"
+        },
+        {
+            image: plan_2,
+            title: "Advanced",
+            price: "$12/mo"
+        },
+        {
+            image: plan_3,
+            title: "Pro",
+            price: "$15/mo"
+        }
+    ]
     const { handleSubmit, register, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema)
     });
@@ -22,25 +40,21 @@ function AddOns() {
     return (
         <>
             <section className="personal-info-section">
-                <h1>Personal info</h1>
-                <p>Please provide your name, email address, and phone number.</p>
+                <h1>Pick add-ons</h1>
+                <p>Add-ons help enhance your gaming experience.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="input-box">
-                        <label htmlFor="username">Name</label>
-                        <input type="text" name="username" id="username" placeholder="e.g. Stephen King" {...register("username")} className={errors.username ? "error-input" : ""} />
-                        {errors.username && <div className="error-message">{errors.username.message}</div>}
+                    <div className="services-container">
+                    <div className="services-container flex">
+                        {services.map((service, index) => (
+                            <div key={index} className={`plan-box`} onClick={() => setActivePlan(index)}>
+                                <div className="plan-image">
+                                    <img src={service.image} alt="" />
+                                </div>
+                                <h3>{service.title}</h3>
+                                <span>{service.price}</span>
+                            </div>
+                        ))}
                     </div>
-                    <div className="input-box">
-                        <label htmlFor="username">Email Address</label>
-                        <input type="email" name="email" id="email" placeholder="e.g. stephenking@lorem.com" {...register("email")} {...register("email")}
-                            className={errors.email ? "error-input" : ""} />
-                        {errors.email && <div className="error-message">{errors.email.message}</div>}
-                    </div>
-                    <div className="input-box">
-                        <label htmlFor="username">Phone Number</label>
-                        <input type="number" name="phone" id="phone" placeholder="e.g. +1 234 567 890" {...register("phone")} {...register("phone")}
-                            className={errors.phone ? "error-input" : ""} />
-                        {errors.phone && <div className="error-message">{errors.phone.message}</div>}
                     </div>
                     <div className="buttons flex">
                         <button className="back-btn" onClick={onGoBack}>Go Back</button>
