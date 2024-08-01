@@ -5,26 +5,12 @@ import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 function AddOns() {
-    const services =
-        [
-            {
-                title: "Online service",
-                description: "Access to multiplayer games",
-                price: "+$1/mo"
-            },
-            {
-                title: "Larger storage",
-                description: "Extra 1TB of cloud save",
-                price: "+$2/mo"
-            },
-            {
-                title: "Customizable Profile",
-                description: "Custom theme on your profile",
-                price: "+$2/mo"
-            }
-        ]
-    const { handleSubmit, register, formState: { errors } } = useForm({
-        resolver: yupResolver(validationSchema)
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(validationSchema),
     });
 
     const navigate = useNavigate();
@@ -43,7 +29,9 @@ function AddOns() {
         if (checked) {
             setSelectedServices((prevServices) => [...prevServices, service]);
         } else {
-            setSelectedServices((prevServices) => prevServices.filter((prevService) => prevService.title !== name));
+            setSelectedServices((prevServices) =>
+                prevServices.filter((prevService) => prevService.title !== name)
+            );
         }
     };
 
@@ -52,10 +40,27 @@ function AddOns() {
         navigate("/summary");
     };
 
-    const onGoBack = async (data) => {
+    const onGoBack = () => {
         navigate("/select-plan");
     };
-
+    const services =
+        [
+            {
+                title: "Online service",
+                description: "Access to multiplayer games",
+                price: "+$1/mo"
+            },
+            {
+                title: "Larger storage",
+                description: "Extra 1TB of cloud save",
+                price: "+$2/mo"
+            },
+            {
+                title: "Customizable Profile",
+                description: "Custom theme on your profile",
+                price: "+$2/mo"
+            }
+        ];
     return (
         <>
             <section className="personal-info-section">
@@ -66,9 +71,15 @@ function AddOns() {
                         {services.map((service, index) => (
                             <div key={index} className={`service flex`}>
                                 <div className="flex">
-                                    <input type="checkbox" name={service.title}
-                                        id={service.title} checked={selectedServices.some((selectedService) => selectedService.title === service.title)}
-                                        onChange={handleCheckboxChange} />
+                                    <input
+                                        type="checkbox"
+                                        name={service.title}
+                                        id={service.title}
+                                        checked={selectedServices.some(
+                                            (selectedService) => selectedService.title === service.title
+                                        )}
+                                        onChange={handleCheckboxChange}
+                                    />
                                     <div>
                                         <h3>{service.title}</h3>
                                         <span>{service.description}</span>
@@ -79,8 +90,10 @@ function AddOns() {
                         ))}
                     </div>
                     <div className="buttons flex">
-                        <button className="back-btn" onClick={onGoBack}>Go Back</button>
-                        <Button text="Next Step"></Button>
+                        <button className="back-btn" type="button" onClick={onGoBack}>
+                            Go Back
+                        </button>
+                        <Button text="Next Step" />
                     </div>
                 </form>
             </section>

@@ -111,6 +111,7 @@
     padding: 14px;
     background-color: #F8F9FF;
     border-radius: 10px;
+    cursor: pointer;
 }
 .toggle-box .toggle-content
 {
@@ -208,3 +209,4 @@ h3.active
     font-size: var(--font-size-16);
     font-weight: var(--font-weight-400);
 }
+/* confirm btn */
