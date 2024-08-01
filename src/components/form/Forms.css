@@ -26,7 +26,6 @@
 }
 .personal-info-section form input
 {
-    margin-bottom: 24px;
     width: 100%;
     background-color: transparent;
     border-radius: 10px;
@@ -41,4 +40,18 @@
     font-size: var(--font-size-16);
     font-weight: var(--font-weight-500);
     color: var(--gray-clr);
+}
+.input-box
+{
+    position: relative;
+    margin-bottom: 24px;
+}
+.error-message
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--error-clr);
+    font-weight: var(--font-weight-700);
+    font-size: var(--font-size-14);
 }
