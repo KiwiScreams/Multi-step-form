@@ -15,7 +15,6 @@ function Home() {
                     <div className="form">
                         <Outlet />
                     </div>
-                    <Button text="Next Step"></Button>
                 </div>
             </section>
         </>
