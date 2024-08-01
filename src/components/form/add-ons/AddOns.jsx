@@ -3,48 +3,97 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
-import plan_1 from "../../../assets/images/plan-1.svg"
-import plan_2 from "../../../assets/images/plan-2.svg"
-import plan_3 from "../../../assets/images/plan-3.svg"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function AddOns() {
-    const { handleSubmit, register, formState: { errors } } = useForm({
-        resolver: yupResolver(validationSchema)
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(validationSchema),
     });
+
     const navigate = useNavigate();
+    const [selectedServices, setSelectedServices] = useState(() => {
+        const storedServices = localStorage.getItem("selectedServices");
+        return storedServices ? JSON.parse(storedServices) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+    }, [selectedServices]);
+
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+        const service = services.find((service) => service.title === name);
+        if (checked) {
+            setSelectedServices((prevServices) => [...prevServices, service]);
+        } else {
+            setSelectedServices((prevServices) =>
+                prevServices.filter((prevService) => prevService.title !== name)
+            );
+        }
+    };
+
     const onSubmit = async (data) => {
         console.log(data);
+        navigate("/summary");
+    };
+
+    const onGoBack = () => {
         navigate("/select-plan");
     };
-    const onGoBack = async (data) => {
-        navigate("/select-plan");
-    };
+    const services =
+        [
+            {
+                title: "Online service",
+                description: "Access to multiplayer games",
+                price: "+$1/mo"
+            },
+            {
+                title: "Larger storage",
+                description: "Extra 1TB of cloud save",
+                price: "+$2/mo"
+            },
+            {
+                title: "Customizable Profile",
+                description: "Custom theme on your profile",
+                price: "+$2/mo"
+            }
+        ];
     return (
         <>
             <section className="personal-info-section">
-                <h1>Personal info</h1>
-                <p>Please provide your name, email address, and phone number.</p>
+                <h1>Pick add-ons</h1>
+                <p>Add-ons help enhance your gaming experience.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="input-box">
-                        <label htmlFor="username">Name</label>
-                        <input type="text" name="username" id="username" placeholder="e.g. Stephen King" {...register("username")} className={errors.username ? "error-input" : ""} />
-                        {errors.username && <div className="error-message">{errors.username.message}</div>}
-                    </div>
-                    <div className="input-box">
-                        <label htmlFor="username">Email Address</label>
-                        <input type="email" name="email" id="email" placeholder="e.g. stephenking@lorem.com" {...register("email")} {...register("email")}
-                            className={errors.email ? "error-input" : ""} />
-                        {errors.email && <div className="error-message">{errors.email.message}</div>}
-                    </div>
-                    <div className="input-box">
-                        <label htmlFor="username">Phone Number</label>
-                        <input type="number" name="phone" id="phone" placeholder="e.g. +1 234 567 890" {...register("phone")} {...register("phone")}
-                            className={errors.phone ? "error-input" : ""} />
-                        {errors.phone && <div className="error-message">{errors.phone.message}</div>}
+                    <div className="services-container flex">
+                        {services.map((service, index) => (
+                            <div key={index} className={`service flex`}>
+                                <div className="flex">
+                                    <input
+                                        type="checkbox"
+                                        name={service.title}
+                                        id={service.title}
+                                        checked={selectedServices.some(
+                                            (selectedService) => selectedService.title === service.title
+                                        )}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    <div>
+                                        <h3>{service.title}</h3>
+                                        <span>{service.description}</span>
+                                    </div>
+                                </div>
+                                <span className="price">{service.price}</span>
+                            </div>
+                        ))}
                     </div>
                     <div className="buttons flex">
-                        <button className="back-btn" onClick={onGoBack}>Go Back</button>
-                        <Button text="Next Step"></Button>
+                        <button className="back-btn" type="button" onClick={onGoBack}>
+                            Go Back
+                        </button>
+                        <Button text="Next Step" />
                     </div>
                 </form>
             </section>

@@ -14,3 +14,11 @@
 {
     background-color: #164A8A;
 }
+.btn.confirm
+{
+    background-color: var(--purple-clr);
+}
+.btn.confirm:hover
+{
+    background-color: #928CFF;
+}
