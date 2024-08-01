@@ -3,29 +3,26 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
-import plan_1 from "../../../assets/images/plan-1.svg"
-import plan_2 from "../../../assets/images/plan-2.svg"
-import plan_3 from "../../../assets/images/plan-3.svg"
 import { useState } from "react";
 function AddOns() {
-    const services = 
-    [
-        {
-            image: plan_1,
-            title: "Arcade",
-            price: "$9/mo"
-        },
-        {
-            image: plan_2,
-            title: "Advanced",
-            price: "$12/mo"
-        },
-        {
-            image: plan_3,
-            title: "Pro",
-            price: "$15/mo"
-        }
-    ]
+    const services =
+        [
+            {
+                title: "Online service",
+                description: "Access to multiplayer games",
+                price: "+$1/mo"
+            },
+            {
+                title: "Larger storage",
+                description: "Extra 1TB of cloud save",
+                price: "+$2/mo"
+            },
+            {
+                title: "Customizable Profile",
+                description: "Custom theme on your profile",
+                price: "+$2/mo"
+            }
+        ]
     const { handleSubmit, register, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema)
     });
@@ -43,18 +40,19 @@ function AddOns() {
                 <h1>Pick add-ons</h1>
                 <p>Add-ons help enhance your gaming experience.</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="services-container">
                     <div className="services-container flex">
                         {services.map((service, index) => (
-                            <div key={index} className={`plan-box`} onClick={() => setActivePlan(index)}>
-                                <div className="plan-image">
-                                    <img src={service.image} alt="" />
+                            <div key={index} className={`service flex`}>
+                                <div className="flex">
+                                    <input type="checkbox" name="service" id="service" />
+                                    <div>
+                                        <h3>{service.title}</h3>
+                                        <span>{service.description}</span>
+                                    </div>
                                 </div>
-                                <h3>{service.title}</h3>
-                                <span>{service.price}</span>
+                                <span className="price">{service.price}</span>
                             </div>
                         ))}
-                    </div>
                     </div>
                     <div className="buttons flex">
                         <button className="back-btn" onClick={onGoBack}>Go Back</button>

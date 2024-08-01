@@ -169,3 +169,42 @@ h3.active
     color: var(--denim-clr);
 }
 /* SERVICES */
+.services-container
+{
+    flex-direction: column;
+    gap: 16px;
+}
+.services-container .service
+{
+    padding: 20px 16px;
+    width: 100%;
+    border: 1px solid var(--purple-clr);
+    border-radius: 10px;
+    background-color: var(--white-clr);
+}
+.services-container .service input
+{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 24px;
+}
+.services-container .service h3
+{
+    font-weight: var(--font-weight-500);
+    font-size: var(--font-size-16);
+    margin-bottom: 8px;
+    color: var(--denim-clr);
+}
+.services-container .service span
+{
+    font-weight: var(--font-weight-400);
+    font-size: var(--font-size-16);
+    color: var(--gray-clr);
+}
+.services-container .service .price
+{
+    color: var(--purple-clr);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+}
