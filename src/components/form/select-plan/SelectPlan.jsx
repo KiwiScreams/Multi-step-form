@@ -7,21 +7,34 @@ import plan_1 from "../../../assets/images/plan-1.svg"
 import plan_2 from "../../../assets/images/plan-2.svg"
 import plan_3 from "../../../assets/images/plan-3.svg"
 import { useState } from "react";
+import { useEffect } from "react";
 
 function SelectPlan() {
-    const { handleSubmit, register, reset, formState: { errors } } = useForm({
-        resolver: yupResolver(validationSchema)
-    });
-    const handleToggle = () => {
-        setIsMonthly(!isMonthly);
-    }
     const navigate = useNavigate();
     const [activePlan, setActivePlan] = useState(0);
     const [isMonthly, setIsMonthly] = useState(true);
+    const [formData, setFormData] = useState({});
+    const { handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(validationSchema),
+        defaultValues: formData
+    });
+    useEffect(() => {
+        const storedFormData = localStorage.getItem('formData');
+        if (storedFormData) {
+            setFormData(JSON.parse(storedFormData));
+            reset(JSON.parse(storedFormData));
+        }
+    }, []);
+    const handleToggle = () => {
+        setIsMonthly(!isMonthly);
+    }
     const onSubmit = async (data) => {
         console.log(data);
-        reset();
+        await localStorage.setItem('formData', JSON.stringify(data));
         navigate("/add-ons");
+    };
+    const onGoBack = async (data) => {
+        navigate("/personal-info");
     };
     const plans = [
         {
@@ -67,7 +80,7 @@ function SelectPlan() {
                         </div>
                     </div>
                     <div className="buttons flex">
-                        <button className="back-btn">Go Back</button>
+                        <button className="back-btn" onClick={onGoBack}>Go Back</button>
                         <Button text="Next Step"></Button>
                     </div>
                 </form>
