@@ -8,6 +8,11 @@
     color: var(--white-clr);
     font-weight: var(--font-weight-500);
     font-size: var(--font-size-16);
+    position: absolute;
+    bottom: 32px;
+    float: right;
+    right: 96px;
+    cursor: pointer;
 }
 .btn:hover
 {
