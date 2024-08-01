@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function AddOns() {
     const services =
         [
@@ -26,14 +26,36 @@ function AddOns() {
     const { handleSubmit, register, formState: { errors } } = useForm({
         resolver: yupResolver(validationSchema)
     });
+
     const navigate = useNavigate();
+    const [selectedServices, setSelectedServices] = useState(() => {
+        const storedServices = localStorage.getItem("selectedServices");
+        return storedServices ? JSON.parse(storedServices) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+    }, [selectedServices]);
+
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+        const service = services.find((service) => service.title === name);
+        if (checked) {
+            setSelectedServices((prevServices) => [...prevServices, service]);
+        } else {
+            setSelectedServices((prevServices) => prevServices.filter((prevService) => prevService.title !== name));
+        }
+    };
+
     const onSubmit = async (data) => {
         console.log(data);
-        navigate("/select-plan");
+        navigate("/summary");
     };
+
     const onGoBack = async (data) => {
         navigate("/select-plan");
     };
+
     return (
         <>
             <section className="personal-info-section">
@@ -44,7 +66,9 @@ function AddOns() {
                         {services.map((service, index) => (
                             <div key={index} className={`service flex`}>
                                 <div className="flex">
-                                    <input type="checkbox" name="service" id="service" />
+                                    <input type="checkbox" name={service.title}
+                                        id={service.title} checked={selectedServices.some((selectedService) => selectedService.title === service.title)}
+                                        onChange={handleCheckboxChange} />
                                     <div>
                                         <h3>{service.title}</h3>
                                         <span>{service.description}</span>
