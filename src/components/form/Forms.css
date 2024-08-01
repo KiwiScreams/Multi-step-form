@@ -71,6 +71,7 @@
     border-radius: 10px;
     width: 160px;
     padding: 20px 16px 16px 16px;
+    margin-bottom: 32px;
 }
 .plan-box .plan-image
 {
@@ -95,4 +96,58 @@
     font-size: var(--font-size-14);
     color: var(--gray-clr);
     font-weight: var(--font-weight-400);
+}
+.toggle-box
+{
+    width: 100%;
+    padding: 14px;
+    background-color: #F8F9FF;
+    border-radius: 10px;
+}
+.toggle-box .toggle-content
+{
+    width: fit-content;
+    margin: auto;
+    gap: 24px;
+}
+.toggle-box h3
+{
+    font-size: var(--font-size-14);
+    color: var(--denim-clr);
+    font-weight: var(--font-weight-700);
+}
+.toggle-box .toggle
+{
+    width: 38px;
+    padding: 5px 4px;
+    background-color: var(--denim-clr);
+    border-radius: 20px;
+}
+.toggle-box .toggle .toggle-ball
+{
+    float: left;
+    background-color: var(--white-clr);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.buttons
+{
+    margin-top: 20px;
+    position: absolute;
+    bottom: 32px;
+    right: 96px;
+    width: 450px;
+}
+.back-btn
+{
+    background-color: transparent;
+    color: var(--gray-clr);
+    height: 48px;
+    font-weight: var(--font-weight-500);
+    font-size: var(--font-size-16);
+}
+.back-btn:hover
+{
+    color: var(--denim-clr);
 }

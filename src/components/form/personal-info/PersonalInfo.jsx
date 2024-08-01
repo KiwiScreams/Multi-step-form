@@ -36,7 +36,10 @@ function PersonalInfo() {
                             className={errors.phone ? "error-input" : ""} />
                         {errors.phone && <div className="error-message">{errors.phone.message}</div>}
                     </div>
-                    <Button text="Next Step"></Button>
+                    <div className="buttons flex">
+                        <button className="back-btn" style={{visibility: "hidden"}}>Go Back</button>
+                        <Button text="Next Step"></Button>
+                    </div>
                 </form>
             </section>
         </>

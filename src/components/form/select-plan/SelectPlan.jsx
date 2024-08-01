@@ -51,8 +51,19 @@ function SelectPlan() {
                             </div>
                         ))}
                     </div>
-                    <button>Go Back</button>
-                    <Button text="Next Step"></Button>
+                    <div className="toggle-box">
+                        <div className="toggle-content flex">
+                            <h3>Monthly</h3>
+                            <div className="toggle">
+                                <div className="toggle-ball"></div>
+                            </div>
+                            <h3>Yearly</h3>
+                        </div>
+                    </div>
+                    <div className="buttons flex">
+                        <button className="back-btn">Go Back</button>
+                        <Button text="Next Step"></Button>
+                    </div>
                 </form>
             </section>
         </>
