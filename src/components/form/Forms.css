@@ -55,3 +55,7 @@
     font-weight: var(--font-weight-700);
     font-size: var(--font-size-14);
 }
+.personal-info-section form input.error-input
+{
+    border: 1px solid var(--error-clr);
+}
