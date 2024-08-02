@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function SelectPlan() {
+    // const [selectedPlan, setSelectedPlan] = useState('monthly');
+    // const history = useHistory();
     const navigate = useNavigate();
     const [activePlan, setActivePlan] = useState(() => {
         const storedActivePlan = localStorage.getItem('activePlan');

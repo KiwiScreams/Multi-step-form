@@ -8,8 +8,9 @@ import plan_2 from "../../../assets/images/plan-2.svg"
 import plan_3 from "../../../assets/images/plan-3.svg"
 import { useState } from "react";
 import { useEffect } from "react";
-function Summary() {
+function Summary(props) {
     const navigate = useNavigate();
+    console.log(props.formValues);
     const onGoBack = async (data) => {
         navigate("/personal-info");
     };

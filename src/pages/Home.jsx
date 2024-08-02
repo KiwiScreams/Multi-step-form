@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import Navigation from "../components/navigation/Navigation"
 import "./Home.css"
 import Button from "../components/form/button/Button"
-function Home() {
+function Home(props) {
     
     function sayHi() {
         console.log("hi");
@@ -13,7 +13,7 @@ function Home() {
                 <Navigation />
                 <div className="container">
                     <div className="form">
-                        <Outlet />
+                        {props.children}
                     </div>
                 </div>
             </section>
