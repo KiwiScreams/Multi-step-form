@@ -7,11 +7,8 @@ import { useState, useEffect } from "react";
 function AddOns() {
     const {
         handleSubmit,
-        register,
         formState: { errors },
-    } = useForm({
-        resolver: yupResolver(validationSchema),
-    });
+    } = useForm();
 
     const navigate = useNavigate();
     const [selectedServices, setSelectedServices] = useState(() => {
@@ -37,7 +34,7 @@ function AddOns() {
 
     const onSubmit = async (data) => {
         console.log(data);
-        navigate("/summary");
+        navigate("/personal-info");
     };
 
     const onGoBack = () => {
@@ -93,7 +90,7 @@ function AddOns() {
                         <button className="back-btn" type="button" onClick={onGoBack}>
                             Go Back
                         </button>
-                        <Button text="Next Step" />
+                        <button type="submit">Next Step</button>
                     </div>
                 </form>
             </section>

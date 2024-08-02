@@ -4,7 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-function PersonalInfo() {
+function PersonalInfo(props) {
+    console.log("hi");
     const [formData, setFormData] = useState({});
     const navigate = useNavigate("");
     const { handleSubmit, register, formState: { errors }, reset, setValue } = useForm({
@@ -25,23 +26,26 @@ function PersonalInfo() {
     }, [formData, setValue]);
     const onSubmit = async (data) => {
         console.log(data);
-        await localStorage.setItem('formData', JSON.stringify(data));
+        localStorage.setItem('formData', JSON.stringify(data));
         navigate("/select-plan");
+        props.setFormValues((prevValues) => {
+            return {...prevValues, ...data}
+        });
     }
     useEffect(() => {
         const updateFormData = () => {
-          const storedFormData = localStorage.getItem('formData');
-          if (storedFormData) {
-            setFormData(JSON.parse(storedFormData));
-            reset(JSON.parse(storedFormData));
-          }
+            const storedFormData = localStorage.getItem('formData');
+            if (storedFormData) {
+                setFormData(JSON.parse(storedFormData));
+                reset(JSON.parse(storedFormData));
+            }
         };
         updateFormData();
         window.addEventListener('storage', updateFormData);
         return () => {
-          window.removeEventListener('storage', updateFormData);
+            window.removeEventListener('storage', updateFormData);
         };
-      }, []);
+    }, []);
     return (
         <>
             <section className="personal-info-section">
