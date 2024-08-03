@@ -8,32 +8,38 @@ import plan_2 from "../../../assets/images/plan-2.svg";
 import plan_3 from "../../../assets/images/plan-3.svg";
 import { useState } from "react";
 import { useEffect } from "react";
-function Summary({selectedPlan = {}}) {
+function Summary({ formValues, selectedPlan, selectedServices }) {
   const navigate = useNavigate();
   const [isMonthly, setIsMonthly] = useState(true);
-  // console.log(props.formValues);
+  const [localSelectedServices, setLocalSelectedServices] =
+    useState(selectedServices);
+
   const onGoBack = async (data) => {
     navigate("/add-ons");
   };
+
   const onConfirm = () => {
     navigate("/success");
     localStorage.clear();
   };
-  
+
   const [planDuration, setPlanDuration] = useState("");
   useEffect(() => {
     const storedDuration = localStorage.getItem("planDuration");
     setPlanDuration(storedDuration);
   }, []);
+
   useEffect(() => {
     const storedDuration = localStorage.getItem("planDuration");
     setPlanDuration(storedDuration);
     setIsMonthly(storedDuration === "monthly");
   }, []);
+
   const handlePlanChange = () => {
     setIsMonthly(!isMonthly);
     setPlanDuration(isMonthly ? "yearly" : "monthly");
   };
+
   const onChange = () => {
     navigate("/add-ons");
   };
@@ -45,21 +51,25 @@ function Summary({selectedPlan = {}}) {
         <div className="summary-container">
           <div className="summary-header flex">
             <div>
-              <h3 className="name">{selectedPlan?.title} ({planDuration})</h3>
+              <h3 className="name">{selectedPlan?.title}</h3>
               <button onClick={onChange}>Change</button>
             </div>
             <span>${selectedPlan?.price}</span>
           </div>
           <table>
             <tbody>
-              <tr>
-                <th>Online service</th>
-                <td>+$1/mo</td>
-              </tr>
-              <tr>
-                <th>Larger storage</th>
-                <td>+$2/mo</td>
-              </tr>
+              {localSelectedServices && localSelectedServices.length > 0 ? (
+                localSelectedServices.map((service, index) => (
+                  <tr key={index}>
+                    <th>{service.name}</th>
+                    <td>+${service.price}/mo</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={2}>No services selected.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

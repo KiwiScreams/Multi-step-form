@@ -4,21 +4,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-function AddOns(props) {
+function AddOns({setSelectedServices, selectedServices}) {
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const navigate = useNavigate();
-  const [selectedServices, setSelectedServices] = useState(() => {
-    const storedServices = localStorage.getItem("selectedServices");
-    return storedServices ? JSON.parse(storedServices) : [];
-  });
-
+  const [localSelectedServices, setLocalSelectedServices] = useState(
+    JSON.parse(localStorage.getItem("selectedServices")) || []
+  );
   useEffect(() => {
-    localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
-  }, [selectedServices]);
+    localStorage.setItem("selectedServices", JSON.stringify(localSelectedServices));
+  }, [localSelectedServices]);
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -57,6 +55,15 @@ function AddOns(props) {
       price: "+$2/mo",
     },
   ];
+  const [service, setServices] = useState([]);
+  const handleServiceChange = (service) => {
+    if (service.includes(service)) {
+      setServices(service.filter((s) => s !== service));
+    } else {
+      setServices([...service, service]);
+    }
+    handleServiceSelection(service);
+  };
   return (
     <>
       <section className="personal-info-section">

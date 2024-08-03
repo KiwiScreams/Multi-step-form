@@ -14,6 +14,7 @@ function SelectPlan({ handlePlanSelection }) {
   const [activePlan, setActivePlan] = useState(() => {
     const storedActivePlan = localStorage.getItem("activePlan");
     return storedActivePlan ? parseInt(storedActivePlan) : 0;
+    
   });
   const [isMonthly, setIsMonthly] = useState(() => {
     const storedIsMonthly = localStorage.getItem("isMonthly");
@@ -66,22 +67,22 @@ function SelectPlan({ handlePlanSelection }) {
     {
       image: plan_1,
       title: "Arcade",
-      price: "$9/mo",
-      yearly: "$90/yr",
+      price: 9 + "/mo",
+      yearly: 90 + "/yr",
       free: "2 months free",
     },
     {
       image: plan_2,
       title: "Advanced",
-      price: "$12/mo",
-      yearly: "$120/yr",
+      price: 12 + "/mo",
+      yearly: 120 + "/yr",
       free: "2 months free",
     },
     {
       image: plan_3,
       title: "Pro",
-      price: "$15/mo",
-      yearly: "$150/yr",
+      price: 15 + "/mo",
+      yearly: 150 + "/yr",
       free: "2 months free",
     },
   ];
