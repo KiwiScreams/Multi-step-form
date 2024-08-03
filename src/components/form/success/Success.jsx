@@ -2,7 +2,7 @@ import image from "../../../assets/images/icon-thank-you.svg";
 function Success() {
   return (
     <>
-      <div className="success">
+      <div className="personal-info-section">
         <div className="success-panel">
           <div className="success-image">
             <img src={image} alt="" />

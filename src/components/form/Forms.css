@@ -241,13 +241,6 @@ th {
   font-weight: var(--font-weight-700);
 }
 /* SUCCESSSSSSSSSS */
-.success {
-  margin: auto;
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .success-panel .success-image {
   width: 80px;
   height: 80px;
