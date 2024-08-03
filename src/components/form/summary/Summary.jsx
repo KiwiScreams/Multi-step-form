@@ -11,7 +11,7 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
   const [localSelectedServices, setLocalSelectedServices] =
     useState(selectedServices);
   const onGoBack = async (data) => {
-    navigate("/add-ons");
+    navigate("/add-ons", { state: { isMonthly } });
   };
 
   const onConfirm = () => {
@@ -50,10 +50,10 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
         <div className="summary-container">
           <div className="summary-header flex">
             <div>
-              <h3 className="name">{selectedPlan?.title}</h3>
+              <h3 className="name">{selectedPlan?.title ?? 'Arcade'}</h3>
               <button onClick={onChange}>Change</button>
             </div>
-            <span>${selectedPlan?.price}</span>
+            <span>${isMonthly ? selectedPlan?.price : selectedPlan?.yearly}</span>
           </div>
           <table>
             <tbody>

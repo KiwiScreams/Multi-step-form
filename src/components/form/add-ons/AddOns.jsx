@@ -15,14 +15,6 @@ function AddOns({ setSelectedServices, selectedServices }) {
   );
   const location = useLocation();
   const isMonthly = location.state.isMonthly;
-  if(isMonthly)
-  {
-
-  }
-  else
-  {
-
-  }
   useEffect(() => {
     localStorage.setItem(
       "selectedServices",
