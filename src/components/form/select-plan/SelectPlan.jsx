@@ -9,9 +9,7 @@ import plan_3 from "../../../assets/images/plan-3.svg"
 import { useState } from "react";
 import { useEffect } from "react";
 
-function SelectPlan() {
-    // const [selectedPlan, setSelectedPlan] = useState('monthly');
-    // const history = useHistory();
+function SelectPlan(props) {
     const navigate = useNavigate();
     const [activePlan, setActivePlan] = useState(() => {
         const storedActivePlan = localStorage.getItem('activePlan');
