@@ -4,21 +4,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-function AddOns(props) {
+function AddOns({ setSelectedServices, selectedServices }) {
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const navigate = useNavigate();
-  const [selectedServices, setSelectedServices] = useState(() => {
-    const storedServices = localStorage.getItem("selectedServices");
-    return storedServices ? JSON.parse(storedServices) : [];
-  });
-
+  const [localSelectedServices, setLocalSelectedServices] = useState(
+    JSON.parse(localStorage.getItem("selectedServices")) || []
+  );
   useEffect(() => {
-    localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
-  }, [selectedServices]);
+    localStorage.setItem(
+      "selectedServices",
+      JSON.stringify(localSelectedServices)
+    );
+  }, [localSelectedServices]);
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -63,6 +63,11 @@ function AddOns(props) {
         <h1>Pick add-ons</h1>
         <p>Add-ons help enhance your gaming experience.</p>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {selectedServices.length === 0 && (
+            <span className="error-message-select">
+              Please select at least one plan
+            </span>
+          )}
           <div className="services-container flex">
             {services.map((service, index) => (
               <div key={index} className={`service flex`}>
@@ -90,7 +95,9 @@ function AddOns(props) {
             <button className="back-btn" type="button" onClick={onGoBack}>
               Go Back
             </button>
-            <Button text="Next Step"></Button>
+            <button disabled={selectedServices.length === 0} className="btn">
+              Next Step
+            </button>
           </div>
         </form>
       </section>

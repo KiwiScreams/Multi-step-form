@@ -267,3 +267,7 @@ th {
   line-height: 25px;
   text-align: center;
 }
+.error-message-select
+{
+    color: var(--error-clr);
+}

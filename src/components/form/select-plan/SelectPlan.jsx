@@ -66,22 +66,22 @@ function SelectPlan({ handlePlanSelection }) {
     {
       image: plan_1,
       title: "Arcade",
-      price: "$9/mo",
-      yearly: "$90/yr",
+      price: 9 + "/mo",
+      yearly: 90 + "/yr",
       free: "2 months free",
     },
     {
       image: plan_2,
       title: "Advanced",
-      price: "$12/mo",
-      yearly: "$120/yr",
+      price: 12 + "/mo",
+      yearly: 120 + "/yr",
       free: "2 months free",
     },
     {
       image: plan_3,
       title: "Pro",
-      price: "$15/mo",
-      yearly: "$150/yr",
+      price: 15 + "/mo",
+      yearly: 150 + "/yr",
       free: "2 months free",
     },
   ];
@@ -96,18 +96,18 @@ function SelectPlan({ handlePlanSelection }) {
               <div
                 key={index}
                 className={`plan-box ${activePlan === index ? "active" : ""}`}
-                onClick={() => setActivePlan(index)}
+                onClick={() => {
+                  setActivePlan(index);
+                  handleSelectPlan(plan, index);
+                }}
               >
                 <div className="plan-image">
                   <img src={plan.image} alt="" />
                 </div>
                 <h3>{plan.title}</h3>
-                <button onClick={() => handleSelectPlan(plan, index)}>
-                  Select
-                </button>
                 <span>{isMonthly ? plan.price : plan.yearly}</span>
                 {isMonthly ? null : (
-                  <span className="yearly-info-free">({plan.free})</span>
+                  <span className="yearly-info-free">{plan.free}</span>
                 )}
               </div>
             ))}

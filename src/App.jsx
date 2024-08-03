@@ -18,14 +18,15 @@ function App() {
     selectedServices: [],
   });
   const [selectedPlan, setSelectedPlan] = useState(null);
-
-  // const handlePlanSelection = (plan) => {
-  //   setSelectedPlan(plan);
-  //   setFormValues((prevValues) => ({...prevValues, activePlan: plan}));
-  // };
   const handlePlanSelection = (plan) => {
     setFormValues((prevValues) => ({ ...prevValues, activePlan: plan }));
   };
+  const [selectedServices, setSelectedServices] = useState([]);
+
+  const handleServiceSelection = (service) => {
+    setSelectedServices((prevServices) => [...prevServices, service]);
+  };
+
   return (
     <main style={{ display: "flex", minHeight: "100vh" }}>
       <Home>
@@ -39,10 +40,19 @@ function App() {
             path="/select-plan"
             element={<SelectPlan handlePlanSelection={handlePlanSelection} />}
           />
-          <Route path="/add-ons" element={<AddOns />} />
+          <Route
+            path="/add-ons"
+            element={<AddOns setSelectedServices={setSelectedServices} selectedServices={selectedServices} />}
+          />
           <Route
             path="/summary"
-            element={<Summary formValues={fromValues} selectedPlan={fromValues.activePlan}/>}
+            element={
+              <Summary
+                formValues={fromValues}
+                selectedPlan={fromValues.activePlan}
+                selectedServices={selectedServices}
+              />
+            }
           />
           <Route path="/success" element={<Success />} />
         </Routes>
