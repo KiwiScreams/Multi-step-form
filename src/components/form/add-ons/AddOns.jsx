@@ -2,7 +2,7 @@ import Button from "../button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 function AddOns({ setSelectedServices, selectedServices }) {
   const {
@@ -13,6 +13,16 @@ function AddOns({ setSelectedServices, selectedServices }) {
   const [localSelectedServices, setLocalSelectedServices] = useState(
     JSON.parse(localStorage.getItem("selectedServices")) || []
   );
+  const location = useLocation();
+  const isMonthly = location.state.isMonthly;
+  if(isMonthly)
+  {
+
+  }
+  else
+  {
+
+  }
   useEffect(() => {
     localStorage.setItem(
       "selectedServices",
@@ -45,16 +55,19 @@ function AddOns({ setSelectedServices, selectedServices }) {
       title: "Online service",
       description: "Access to multiplayer games",
       price: 1,
+      yearly: 10
     },
     {
       title: "Larger storage",
       description: "Extra 1TB of cloud save",
       price: 2,
+      yearly: 20
     },
     {
       title: "Customizable Profile",
       description: "Custom theme on your profile",
       price: 2,
+      yearly: 20
     },
   ];
   return (
@@ -87,7 +100,7 @@ function AddOns({ setSelectedServices, selectedServices }) {
                     <span>{service.description}</span>
                   </div>
                 </div>
-                <span className="price">{service.price}</span>
+                <span className="price">{isMonthly ? `$${service.price}/mo` : `$${service.yearly}/yr`}</span>
               </div>
             ))}
           </div>

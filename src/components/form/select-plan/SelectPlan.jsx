@@ -52,10 +52,13 @@ function SelectPlan({ handlePlanSelection }) {
   const handleToggle = () => {
     setIsMonthly(!isMonthly);
   };
+  const handleNextStep = () => {
+    navigate("/add-ons", { state: { isMonthly } });
+  };
   const onSubmit = async (data) => {
     console.log(data);
-    await localStorage.setItem("formData", JSON.stringify(data));
-    navigate("/add-ons");
+    localStorage.setItem("formData", JSON.stringify(data));
+    navigate("/add-ons", { state: { isMonthly } });
   };
 
   const onGoBack = async (data) => {
@@ -105,7 +108,9 @@ function SelectPlan({ handlePlanSelection }) {
                   <img src={plan.image} alt="" />
                 </div>
                 <h3>{plan.title}</h3>
-                <span>{isMonthly ? plan.price : plan.yearly}</span>
+                <span>
+                  {isMonthly ? `$${plan.price}/mo` : `$${plan.yearly}/yr`}
+                </span>
                 {isMonthly ? null : (
                   <span className="yearly-info-free">{plan.free}</span>
                 )}
@@ -128,7 +133,7 @@ function SelectPlan({ handlePlanSelection }) {
             <button className="back-btn" onClick={onGoBack}>
               Go Back
             </button>
-            <Button text="Next Step"></Button>
+            <button className="btn" onClick={handleNextStep}>Next Step</button>
           </div>
         </form>
       </section>
