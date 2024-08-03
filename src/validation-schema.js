@@ -4,7 +4,7 @@ const validationSchema = yup.object().shape({
   email: yup.string().email().required("This field is required"),
   phone: yup.string().min(9).max(12).required("This field is required"),
 //   activePlan: yup.string().oneOf(["Arcade", "Advanced", "Pro"], "Invalid plan"),
-//   isMonthly: yup.boolean().required("This field is required"),
+//   isMonthly: yup.boolean().required(),
 //   selectedServices: yup
 //     .array()
 //     .of(

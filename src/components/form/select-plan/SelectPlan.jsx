@@ -55,6 +55,7 @@ function SelectPlan(props) {
   const onGoBack = async (data) => {
     navigate("/personal-info");
   };
+  
   const plans = [
     {
       image: plan_1,
