@@ -2,10 +2,7 @@ import Button from "../button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
-import { useNavigate } from "react-router-dom";
-import plan_1 from "../../../assets/images/plan-1.svg";
-import plan_2 from "../../../assets/images/plan-2.svg";
-import plan_3 from "../../../assets/images/plan-3.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 function Summary({ formValues, selectedPlan, selectedServices }) {
@@ -13,7 +10,6 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
   const [isMonthly, setIsMonthly] = useState(true);
   const [localSelectedServices, setLocalSelectedServices] =
     useState(selectedServices);
-
   const onGoBack = async (data) => {
     navigate("/add-ons");
   };
@@ -21,6 +17,7 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
   const onConfirm = () => {
     navigate("/success");
     localStorage.clear();
+    setIsConfirmed(true);
   };
 
   const [planDuration, setPlanDuration] = useState("");
@@ -41,7 +38,7 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
   };
 
   const onChange = () => {
-    navigate("/add-ons");
+    navigate("/select-plan");
   };
   return (
     <>

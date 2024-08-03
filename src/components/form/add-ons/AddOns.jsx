@@ -56,14 +56,14 @@ function AddOns({setSelectedServices, selectedServices}) {
     },
   ];
   const [service, setServices] = useState([]);
-  const handleServiceChange = (service) => {
-    if (service.includes(service)) {
-      setServices(service.filter((s) => s !== service));
-    } else {
-      setServices([...service, service]);
-    }
-    handleServiceSelection(service);
-  };
+  // const handleServiceChange = (service) => {
+  //   if (service.includes(service)) {
+  //     setServices(service.filter((s) => s !== service));
+  //   } else {
+  //     setServices([...service, service]);
+  //   }
+  //   handleServiceSelection(service);
+  // };
   return (
     <>
       <section className="personal-info-section">

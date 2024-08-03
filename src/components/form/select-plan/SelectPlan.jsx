@@ -107,7 +107,7 @@ function SelectPlan({ handlePlanSelection }) {
                 <h3>{plan.title}</h3>
                 <span>{isMonthly ? plan.price : plan.yearly}</span>
                 {isMonthly ? null : (
-                  <span className="yearly-info-free">({plan.free})</span>
+                  <span className="yearly-info-free">{plan.free}</span>
                 )}
               </div>
             ))}
