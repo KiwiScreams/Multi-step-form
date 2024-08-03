@@ -4,18 +4,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-function AddOns({setSelectedServices, selectedServices}) {
+function AddOns({ setSelectedServices, selectedServices }) {
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const navigate = useNavigate();
   const [localSelectedServices, setLocalSelectedServices] = useState(
     JSON.parse(localStorage.getItem("selectedServices")) || []
   );
   useEffect(() => {
-    localStorage.setItem("selectedServices", JSON.stringify(localSelectedServices));
+    localStorage.setItem(
+      "selectedServices",
+      JSON.stringify(localSelectedServices)
+    );
   }, [localSelectedServices]);
 
   const handleCheckboxChange = (event) => {
@@ -55,21 +57,17 @@ function AddOns({setSelectedServices, selectedServices}) {
       price: "+$2/mo",
     },
   ];
-  const [service, setServices] = useState([]);
-  // const handleServiceChange = (service) => {
-  //   if (service.includes(service)) {
-  //     setServices(service.filter((s) => s !== service));
-  //   } else {
-  //     setServices([...service, service]);
-  //   }
-  //   handleServiceSelection(service);
-  // };
   return (
     <>
       <section className="personal-info-section">
         <h1>Pick add-ons</h1>
         <p>Add-ons help enhance your gaming experience.</p>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {selectedServices.length === 0 && (
+            <span className="error-message-select">
+              Please select at least one plan
+            </span>
+          )}
           <div className="services-container flex">
             {services.map((service, index) => (
               <div key={index} className={`service flex`}>
@@ -97,7 +95,9 @@ function AddOns({setSelectedServices, selectedServices}) {
             <button className="back-btn" type="button" onClick={onGoBack}>
               Go Back
             </button>
-            <Button text="Next Step"></Button>
+            <button disabled={selectedServices.length === 0} className="btn">
+              Next Step
+            </button>
           </div>
         </form>
       </section>
