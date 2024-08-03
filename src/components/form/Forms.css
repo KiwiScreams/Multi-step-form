@@ -87,6 +87,12 @@
   font-size: var(--font-size-14);
   color: var(--gray-clr);
   font-weight: var(--font-weight-400);
+  display: block;
+  margin-bottom: 6px;
+}
+.plan-box span.yearly-info-free {
+  color: var(--denim-clr);
+  margin-bottom: 0;
 }
 .toggle-box {
   width: 100%;
