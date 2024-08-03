@@ -15,7 +15,10 @@ function Summary(props) {
   const onGoBack = async (data) => {
     navigate("/add-ons");
   };
-  
+  const onConfirm = () => {
+    navigate("/success");
+    localStorage.clear();
+  };
   const [planDuration, setPlanDuration] = useState("");
   useEffect(() => {
     const storedDuration = localStorage.getItem("planDuration");
