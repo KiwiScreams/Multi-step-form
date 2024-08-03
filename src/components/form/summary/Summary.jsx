@@ -61,8 +61,8 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
               {localSelectedServices && localSelectedServices.length > 0 ? (
                 localSelectedServices.map((service, index) => (
                   <tr key={index}>
-                    <th>{service.name}</th>
-                    <td>+${service.price}/mo</td>
+                    <th>{service.title.toString()}</th>
+                    <td>{service.price}</td>
                   </tr>
                 ))
               ) : (

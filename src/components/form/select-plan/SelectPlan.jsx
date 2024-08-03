@@ -14,7 +14,6 @@ function SelectPlan({ handlePlanSelection }) {
   const [activePlan, setActivePlan] = useState(() => {
     const storedActivePlan = localStorage.getItem("activePlan");
     return storedActivePlan ? parseInt(storedActivePlan) : 0;
-    
   });
   const [isMonthly, setIsMonthly] = useState(() => {
     const storedIsMonthly = localStorage.getItem("isMonthly");
@@ -97,15 +96,15 @@ function SelectPlan({ handlePlanSelection }) {
               <div
                 key={index}
                 className={`plan-box ${activePlan === index ? "active" : ""}`}
-                onClick={() => setActivePlan(index)}
+                onClick={() => {
+                  setActivePlan(index);
+                  handleSelectPlan(plan, index);
+                }}
               >
                 <div className="plan-image">
                   <img src={plan.image} alt="" />
                 </div>
                 <h3>{plan.title}</h3>
-                <button onClick={() => handleSelectPlan(plan, index)}>
-                  Select
-                </button>
                 <span>{isMonthly ? plan.price : plan.yearly}</span>
                 {isMonthly ? null : (
                   <span className="yearly-info-free">({plan.free})</span>
