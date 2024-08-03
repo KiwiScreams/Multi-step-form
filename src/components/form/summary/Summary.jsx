@@ -19,7 +19,9 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
     localStorage.clear();
     setIsConfirmed(true);
   };
-
+  const totalServicesCost = localSelectedServices.reduce((acc, service) => {
+    return acc + service.price;
+  }, 0);
   const [planDuration, setPlanDuration] = useState("");
   useEffect(() => {
     const storedDuration = localStorage.getItem("planDuration");
@@ -72,7 +74,7 @@ function Summary({ formValues, selectedPlan, selectedServices }) {
         </div>
         <div className="flex total">
           <h3 id="total">Total {isMonthly ? "(per month)" : "(per year)"}</h3>
-          <span>+${isMonthly ? "12/mo" : "144/yr"}</span>
+          <span>${totalServicesCost + selectedPlan?.price}</span>
         </div>
         <div className="buttons flex">
           <button className="back-btn" onClick={onGoBack}>

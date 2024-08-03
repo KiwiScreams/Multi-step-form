@@ -66,22 +66,22 @@ function SelectPlan({ handlePlanSelection }) {
     {
       image: plan_1,
       title: "Arcade",
-      price: 9 + "/mo",
-      yearly: 90 + "/yr",
+      price: 9,
+      yearly: 90,
       free: "2 months free",
     },
     {
       image: plan_2,
       title: "Advanced",
-      price: 12 + "/mo",
-      yearly: 120 + "/yr",
+      price: 12,
+      yearly: 120,
       free: "2 months free",
     },
     {
       image: plan_3,
       title: "Pro",
-      price: 15 + "/mo",
-      yearly: 150 + "/yr",
+      price: 15,
+      yearly: 150,
       free: "2 months free",
     },
   ];
