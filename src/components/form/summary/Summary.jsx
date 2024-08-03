@@ -8,10 +8,10 @@ import plan_2 from "../../../assets/images/plan-2.svg";
 import plan_3 from "../../../assets/images/plan-3.svg";
 import { useState } from "react";
 import { useEffect } from "react";
-function Summary(props) {
+function Summary({selectedPlan = {}}) {
   const navigate = useNavigate();
   const [isMonthly, setIsMonthly] = useState(true);
-  console.log(props.formValues);
+  // console.log(props.formValues);
   const onGoBack = async (data) => {
     navigate("/add-ons");
   };
@@ -37,7 +37,6 @@ function Summary(props) {
   const onChange = () => {
     navigate("/add-ons");
   };
-  // handlePlanChange();
   return (
     <>
       <section className="personal-info-section">
@@ -46,10 +45,10 @@ function Summary(props) {
         <div className="summary-container">
           <div className="summary-header flex">
             <div>
-              <h3>Arcade (Monthly)</h3>
+              <h3 className="name">{selectedPlan?.title} ({planDuration})</h3>
               <button onClick={onChange}>Change</button>
             </div>
-            <span>$9/mo</span>
+            <span>${selectedPlan?.price}</span>
           </div>
           <table>
             <tbody>

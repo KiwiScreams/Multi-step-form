@@ -17,6 +17,15 @@ function App() {
     isMonthly: "",
     selectedServices: [],
   });
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  // const handlePlanSelection = (plan) => {
+  //   setSelectedPlan(plan);
+  //   setFormValues((prevValues) => ({...prevValues, activePlan: plan}));
+  // };
+  const handlePlanSelection = (plan) => {
+    setFormValues((prevValues) => ({ ...prevValues, activePlan: plan }));
+  };
   return (
     <main style={{ display: "flex", minHeight: "100vh" }}>
       <Home>
@@ -26,11 +35,14 @@ function App() {
             path="/personal-info"
             element={<PersonalInfo setFormValues={setFormValues} />}
           />
-          <Route path="/select-plan" element={<SelectPlan />} />
+          <Route
+            path="/select-plan"
+            element={<SelectPlan handlePlanSelection={handlePlanSelection} />}
+          />
           <Route path="/add-ons" element={<AddOns />} />
           <Route
             path="/summary"
-            element={<Summary formValues={fromValues} />}
+            element={<Summary formValues={fromValues} selectedPlan={fromValues.activePlan}/>}
           />
           <Route path="/success" element={<Success />} />
         </Routes>

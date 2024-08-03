@@ -9,7 +9,7 @@ import plan_3 from "../../../assets/images/plan-3.svg";
 import { useState } from "react";
 import { useEffect } from "react";
 
-function SelectPlan(props) {
+function SelectPlan({ handlePlanSelection }) {
   const navigate = useNavigate();
   const [activePlan, setActivePlan] = useState(() => {
     const storedActivePlan = localStorage.getItem("activePlan");
@@ -28,6 +28,12 @@ function SelectPlan(props) {
     resolver: yupResolver(validationSchema),
     defaultValues: formData,
   });
+  const [selectedServices, setSelectedServices] = useState([]);
+
+  const handleSelectPlan = (plan, index) => {
+    setSelectedServices([...selectedServices, plan]);
+    handlePlanSelection(plan);
+  };
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
@@ -55,7 +61,7 @@ function SelectPlan(props) {
   const onGoBack = async (data) => {
     navigate("/personal-info");
   };
-  
+
   const plans = [
     {
       image: plan_1,
@@ -96,6 +102,9 @@ function SelectPlan(props) {
                   <img src={plan.image} alt="" />
                 </div>
                 <h3>{plan.title}</h3>
+                <button onClick={() => handleSelectPlan(plan, index)}>
+                  Select
+                </button>
                 <span>{isMonthly ? plan.price : plan.yearly}</span>
                 {isMonthly ? null : (
                   <span className="yearly-info-free">({plan.free})</span>
