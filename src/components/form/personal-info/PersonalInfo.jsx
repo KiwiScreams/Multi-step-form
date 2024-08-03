@@ -5,7 +5,6 @@ import validationSchema from "../../../validation-schema";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 function PersonalInfo(props) {
-    console.log("hi");
     const [formData, setFormData] = useState({});
     const navigate = useNavigate("");
     const { handleSubmit, register, formState: { errors }, reset, setValue } = useForm({

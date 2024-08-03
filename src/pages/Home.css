@@ -4,11 +4,7 @@
     background-color: var(--white-clr);
     padding: 16px;
     border-radius: 10px;
-    box-shadow: 0 25px 40px -20px hsla(0, 0%, 0%, 0.09);
-    /* position: absolute; */
-    /* top: 50%; */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
+    box-shadow: 0 25px 40px -20px #00000017;
     margin: auto;
     display: flex;
     gap: 100px;
