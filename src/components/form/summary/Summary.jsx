@@ -10,15 +10,27 @@ import { useState } from "react";
 import { useEffect } from "react";
 function Summary(props) {
   const navigate = useNavigate();
+  const [isMonthly, setIsMonthly] = useState(true);
   console.log(props.formValues);
   const onGoBack = async (data) => {
-    navigate("/personal-info");
+    navigate("/add-ons");
   };
+  
   const [planDuration, setPlanDuration] = useState("");
   useEffect(() => {
     const storedDuration = localStorage.getItem("planDuration");
     setPlanDuration(storedDuration);
   }, []);
+  useEffect(() => {
+    const storedDuration = localStorage.getItem("planDuration");
+    setPlanDuration(storedDuration);
+    setIsMonthly(storedDuration === "monthly");
+  }, []);
+  const handlePlanChange = () => {
+    setIsMonthly(!isMonthly);
+    setPlanDuration(isMonthly ? "yearly" : "monthly");
+  };
+  // handlePlanChange();
   return (
     <>
       <section className="personal-info-section">
@@ -46,15 +58,14 @@ function Summary(props) {
           </table>
         </div>
         <div className="flex total">
-          <h3 id="total">Total{" "}
-          {planDuration === "monthly" ? "(per month)" : "(per year)"}</h3>
-          <span>+$12/mo</span>
+          <h3 id="total">Total {isMonthly ? "(per month)" : "(per year)"}</h3>
+          <span>+${isMonthly ? "12/mo" : "144/yr"}</span>
         </div>
         <div className="buttons flex">
           <button className="back-btn" onClick={onGoBack}>
             Go Back
           </button>
-          <Button text="Confirm" className="confirm"></Button>
+          <button className="confirm btn" onClick={onConfirm}>Confirm</button>
         </div>
       </section>
     </>
