@@ -19,6 +19,7 @@ function Summary(props) {
     navigate("/success");
     localStorage.clear();
   };
+  
   const [planDuration, setPlanDuration] = useState("");
   useEffect(() => {
     const storedDuration = localStorage.getItem("planDuration");
@@ -33,6 +34,9 @@ function Summary(props) {
     setIsMonthly(!isMonthly);
     setPlanDuration(isMonthly ? "yearly" : "monthly");
   };
+  const onChange = () => {
+    navigate("/add-ons");
+  };
   // handlePlanChange();
   return (
     <>
@@ -43,7 +47,7 @@ function Summary(props) {
           <div className="summary-header flex">
             <div>
               <h3>Arcade (Monthly)</h3>
-              <button>Change</button>
+              <button onClick={onChange}>Change</button>
             </div>
             <span>$9/mo</span>
           </div>
@@ -68,7 +72,9 @@ function Summary(props) {
           <button className="back-btn" onClick={onGoBack}>
             Go Back
           </button>
-          <button className="confirm btn" onClick={onConfirm}>Confirm</button>
+          <button className="confirm btn" onClick={onConfirm}>
+            Confirm
+          </button>
         </div>
       </section>
     </>
